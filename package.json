@@ -1,0 +1,12 @@
+{
+  "name": "csv-doctor",
+  "version": "1.0.0",
+  "description": "Instant data-quality report and one-click cleaning for CSV files, entirely in the browser.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "start": "npx --yes serve@14.2.4 -l 4173 ."
+  }
+}

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSV Doctor: find and fix what's wrong with your data</title>
+  <meta name="description" content="Drop in a CSV and get an instant data-quality report, then download a cleaned copy. Runs entirely in your browser." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f766e'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='%23fff'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="./"><span class="cross" aria-hidden="true"></span>CSV Doctor</a>
+    <a class="quiet" href="https://github.com/AdhiGozalt/csv-doctor" target="_blank" rel="noopener">Source on GitHub ↗</a>
+  </header>
+
+  <main>
+    <section id="intake" class="intake">
+      <h1>What's wrong with your&nbsp;data?</h1>
+      <p class="lead">Drop in a CSV for an instant check-up, then take home a cleaned copy. Your file never leaves this browser.</p>
+
+      <label id="drop" class="drop" for="file">
+        <input id="file" type="file" accept=".csv,.tsv,.txt,text/csv" />
+        <strong>Choose a CSV file</strong>
+        <span>or drop it here</span>
+      </label>
+      <p id="error" class="error" role="alert" hidden></p>
+      <button id="sample" class="link-button" type="button">No file handy? Try a messy sample →</button>
+
+      <ul class="checks" aria-label="What gets checked">
+        <li>Missing values</li><li>Duplicate rows</li><li>Wrong data types</li><li>Extreme values</li><li>Mixed date formats</li><li>Inconsistent spelling</li>
+      </ul>
+    </section>
+
+    <div id="report" hidden>
+      <section class="chart">
+        <div class="patient">
+          <p class="label">Patient</p>
+          <h2 id="file-name"></h2>
+          <p id="file-meta" class="meta"></p>
+          <button id="restart" class="link-button" type="button">← Check another file</button>
+        </div>
+        <div class="score" id="score-box">
+          <p class="label">Health score</p>
+          <p class="score-number"><span id="score"></span><small>/100</small></p>
+          <p id="verdict" class="verdict"></p>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Diagnosis <span id="issue-count" class="count"></span></h2>
+        <div id="issues"></div>
+      </section>
+
+      <section class="block treatment">
+        <h2>Treatment</h2>
+        <p class="note">Only mechanical fixes are offered. Extreme values and wrong types stay in the file for you to judge.</p>
+        <div id="treatments" class="treatments"></div>
+        <div class="result">
+          <p class="before-after"><span id="before"></span><span aria-hidden="true">→</span><strong id="after"></strong></p>
+          <p id="after-note" class="meta"></p>
+          <button id="download" class="primary" type="button">Download cleaned CSV</button>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Columns</h2>
+        <div class="scroll" tabindex="0"><table id="columns"></table></div>
+      </section>
+
+      <section class="block">
+        <h2>Data preview</h2>
+        <p id="preview-note" class="note"></p>
+        <div class="scroll tall" tabindex="0"><table id="preview"></table></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="foot">Built by <a href="https://jaelcorner.com/portfolio/" rel="noopener">Muhammad Adhi Gozalt</a> · No uploads, no tracking.</footer>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
